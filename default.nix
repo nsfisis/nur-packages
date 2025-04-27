@@ -19,4 +19,5 @@
   example-package = pkgs.callPackage ./pkgs/example-package { };
   hgrep = pkgs.callPackage ./pkgs/hgrep { };
   reparojson = pkgs.callPackage ./pkgs/reparojson { };
+  term-clock = pkgs.callPackage ./pkgs/term-clock { };
 }
