@@ -18,6 +18,8 @@
 
   example-package = pkgs.callPackage ./pkgs/example-package { };
   hgrep = pkgs.callPackage ./pkgs/hgrep { };
+
   reparojson = pkgs.callPackage ./pkgs/reparojson { };
+  term-banner = pkgs.callPackage ./pkgs/term-banner { };
   term-clock = pkgs.callPackage ./pkgs/term-clock { };
 }
