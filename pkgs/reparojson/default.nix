@@ -19,7 +19,7 @@ rustPlatform.buildRustPackage rec {
   meta = {
     description = "A simple command-line tool to repair JSON. It only fixes the syntactic errors and never formats the given input.";
     homepage = "https://github.com/nsfisis/reparojson";
-    license = [lib.licenses.mit];
+    license = [ lib.licenses.mit ];
     mainProgram = "reparojson";
   };
 }

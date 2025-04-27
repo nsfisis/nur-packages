@@ -50,7 +50,7 @@ rustPlatform.buildRustPackage rec {
     description = "hgrep is a grep tool with human-friendly search output. This is similar to `-C` option of `grep` command, but its output is enhanced with syntax highlighting focusing on human readable outputs.";
     homepage = "https://github.com/rhysd/hgrep";
     changelog = "https://github.com/rhysd/hgrep/raw/v${version}/CHANGELOG.md";
-    license = [lib.licenses.mit];
+    license = [ lib.licenses.mit ];
     mainProgram = "hgrep";
   };
 }
