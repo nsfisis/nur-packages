@@ -15,5 +15,6 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   example-package = pkgs.callPackage ./pkgs/example-package { };
+  hgrep = pkgs.callPackage ./pkgs/hgrep { };
   reparojson = pkgs.callPackage ./pkgs/reparojson { };
 }
