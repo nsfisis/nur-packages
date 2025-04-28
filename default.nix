@@ -19,6 +19,7 @@
   example-package = pkgs.callPackage ./pkgs/example-package { };
   hgrep = pkgs.callPackage ./pkgs/hgrep { };
 
+  git-helpers = pkgs.callPackage ./pkgs/git-helpers { };
   reparojson = pkgs.callPackage ./pkgs/reparojson { };
   term-banner = pkgs.callPackage ./pkgs/term-banner { };
   term-clock = pkgs.callPackage ./pkgs/term-clock { };
