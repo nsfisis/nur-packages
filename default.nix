@@ -17,6 +17,7 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   example-package = pkgs.callPackage ./pkgs/example-package { };
+  claude-code = pkgs.callPackage ./pkgs/claude-code { };
   hgrep = pkgs.callPackage ./pkgs/hgrep { };
 
   git-helpers = pkgs.callPackage ./pkgs/git-helpers { };
