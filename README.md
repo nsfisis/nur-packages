@@ -7,3 +7,5 @@
 ```sh
 $ pkgs/claude-code/update.sh
 ```
+
+https://github.com/NixOS/nixpkgs/tree/nixpkgs-unstable/pkgs/by-name/cl/claude-code
