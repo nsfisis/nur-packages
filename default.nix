@@ -16,9 +16,8 @@
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  example-package = pkgs.callPackage ./pkgs/example-package { };
-
   claude-code = pkgs.callPackage ./pkgs/claude-code { };
+  deck = pkgs.callPackage ./pkgs/deck { };
   hgrep = pkgs.callPackage ./pkgs/hgrep { };
   source-han-code-jp = pkgs.callPackage ./pkgs/source-han-code-jp { };
 
