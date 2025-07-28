@@ -1,4 +1,4 @@
-# https://github.com/NixOS/nixpkgs/blob/3016b4b15d13f3089db8a41ef937b13a9e33a8df/pkgs/by-name/cl/claude-code/package.nix
+# https://github.com/NixOS/nixpkgs/blob/6027c30c8e9810896b92429f0092f624f7b1aace/pkgs/by-name/cl/claude-code/package.nix
 
 {
   lib,
@@ -9,16 +9,16 @@
 
 buildNpmPackage rec {
   pname = "claude-code";
-  version = "1.0.56";
+  version = "1.0.61";
 
   nodejs = nodejs_20; # required for sandboxed Nix builds on Darwin
 
   src = fetchzip {
     url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
-    hash = "sha256-q/17LfP5MWeKpt8akPXwMvkZ6Qhc+9IGpM6N34JuExY=";
+    hash = "sha256-K10rlFGi2KH65VE0kiBY1lU16xkMPV24/GSD6OjU3v0=";
   };
 
-  npmDepsHash = "sha256-0hr5Tu2/0ETEgNb2s4BQGZXjsHrFzK+iD2ZtZNTlyoI=";
+  npmDepsHash = "sha256-8Wt8+ZVMSESULguBME/TMMbTUXH3Soha3RTHWs1rBow=";
 
   postPatch = ''
     cp ${./package-lock.json} package-lock.json
@@ -30,9 +30,11 @@ buildNpmPackage rec {
 
   # `claude-code` tries to auto-update by default, this disables that functionality.
   # https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#environment-variables
+  # The DEV=true env var causes claude to crash with `TypeError: window.WebSocket is not a constructor`
   postInstall = ''
     wrapProgram $out/bin/claude \
-      --set DISABLE_AUTOUPDATER 1
+      --set DISABLE_AUTOUPDATER 1 \
+      --unset DEV
   '';
 
   passthru.updateScript = ./update.sh;
