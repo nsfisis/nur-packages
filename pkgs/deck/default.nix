@@ -7,13 +7,13 @@
 
 buildGoModule rec {
   pname = "deck";
-  version = "1.2.1";
+  version = "1.7.0";
 
   src = fetchFromGitHub {
     owner = "k1LoW";
     repo = "deck";
     rev = "v${version}";
-    hash = "sha256-dH19BREXUid4euMhK5D2bLFq5rONmZeyUrCQG+8uQf4=";
+    hash = "sha256-vOEk6rnyyoIEHnE/6/oTGkmGG9kkbdeR7yDCWwB37T0=";
   };
   vendorHash = "sha256-eXW91aWBfVAkPSyqhrHIS4vLJwQqCSGNwr5BdY24KS4=";
 
