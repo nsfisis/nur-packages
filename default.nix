@@ -17,7 +17,6 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   claude-code = pkgs.callPackage ./pkgs/claude-code { };
-  deck = pkgs.callPackage ./pkgs/deck { };
   hgrep = pkgs.callPackage ./pkgs/hgrep { };
   source-han-code-jp = pkgs.callPackage ./pkgs/source-han-code-jp { };
 
