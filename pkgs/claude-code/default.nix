@@ -1,24 +1,22 @@
-# https://github.com/NixOS/nixpkgs/blob/6027c30c8e9810896b92429f0092f624f7b1aace/pkgs/by-name/cl/claude-code/package.nix
+# https://github.com/NixOS/nixpkgs/blob/7df7ff7d8e00218376575f0acdcc5d66741351ee/pkgs/by-name/cl/claude-code/package.nix
 
 {
   lib,
   buildNpmPackage,
   fetchzip,
-  nodejs_20,
+  writableTmpDirAsHomeHook,
+  versionCheckHook,
 }:
-
-buildNpmPackage rec {
+buildNpmPackage (finalAttrs: {
   pname = "claude-code";
   version = "2.0.1";
 
-  nodejs = nodejs_20; # required for sandboxed Nix builds on Darwin
-
   src = fetchzip {
-    url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
+    url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${finalAttrs.version}.tgz";
     hash = "sha256-LUbDPFa0lY74MBU4hvmYVntt6hVZy6UUZFN0iB4Eno8=";
   };
 
-  npmDepsHash = "sha256-mxMEO1r5KzHw7d3NRJSWtkc9vnnd5XbgD2D5MYP1zO0=";
+  npmDepsHash = "sha256-DehkeMZvzn+hvcCDzJfd4p9oYc1GSZm8gu8vKS4Uncw=";
 
   postPatch = ''
     cp ${./package-lock.json} package-lock.json
@@ -26,7 +24,7 @@ buildNpmPackage rec {
 
   dontNpmBuild = true;
 
-  AUTHORIZED = "1";
+  env.AUTHORIZED = "1";
 
   # `claude-code` tries to auto-update by default, this disables that functionality.
   # https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview#environment-variables
@@ -37,6 +35,14 @@ buildNpmPackage rec {
       --unset DEV
   '';
 
+  doInstallCheck = true;
+  nativeInstallCheckInputs = [
+    writableTmpDirAsHomeHook
+    versionCheckHook
+  ];
+  versionCheckKeepEnvironment = [ "HOME" ];
+  versionCheckProgramArg = "--version";
+
   passthru.updateScript = ./update.sh;
 
   meta = {
@@ -46,8 +52,10 @@ buildNpmPackage rec {
     license = lib.licenses.unfree;
     maintainers = with lib.maintainers; [
       malo
+      markus1189
       omarjatoi
+      xiaoxiangmoe
     ];
     mainProgram = "claude";
   };
-}
+})

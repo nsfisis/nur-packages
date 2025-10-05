@@ -1,17 +1,12 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p nodePackages.npm nix-update
+#!nix-shell --pure -i bash --packages nodejs nix-update git
 
-# https://github.com/NixOS/nixpkgs/blob/3016b4b15d13f3089db8a41ef937b13a9e33a8df/pkgs/by-name/cl/claude-code/update.sh
+# https://github.com/NixOS/nixpkgs/blob/7df7ff7d8e00218376575f0acdcc5d66741351ee/pkgs/by-name/cl/claude-code/update.sh
 
 set -euo pipefail
 
 version=$(npm view @anthropic-ai/claude-code version)
 
-# Generate updated lock file
-cd "$(dirname "${BASH_SOURCE[0]}")"
-npm i --package-lock-only @anthropic-ai/claude-code@"$version"
-rm -f package.json
-
 # Update version and hashes
-cd -
-nix-update claude-code --version "$version"
+AUTHORIZED=1 NIXPKGS_ALLOW_UNFREE=1 nix-update claude-code --version="$version" --generate-lockfile
+# nix-update vscode-extensions.anthropic.claude-code --use-update-script --version "$version"
