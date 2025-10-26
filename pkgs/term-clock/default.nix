@@ -7,13 +7,13 @@
 
 buildGoModule rec {
   pname = "term-clock";
-  version = "1.0.0";
+  version = "1.1.0";
 
   src = fetchFromGitHub {
     owner = "nsfisis";
     repo = "term-clock";
     rev = "v${version}";
-    hash = "sha256-IB6AFQpbTVfDbEbTnq4sWTxKHAoNQlmw5tvBl13y4yc=";
+    hash = "sha256-sRir3m+KpGncOW5ys+eQw4brpYaB9mfVTFg2zrdGrLg=";
   };
   vendorHash = "sha256-NLxaPtxhb67uhs01DASlAIfCIWV1lnuiu+uFmJcxN0U=";
 
