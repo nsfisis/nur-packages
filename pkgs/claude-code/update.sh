@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
-#!nix-shell --pure -i bash --packages nodejs nix-update git
+#!nix-shell --pure --keep NIX_PATH -i bash --packages nodejs nix-update git cacert
 
-# https://github.com/NixOS/nixpkgs/blob/7df7ff7d8e00218376575f0acdcc5d66741351ee/pkgs/by-name/cl/claude-code/update.sh
+# https://github.com/NixOS/nixpkgs/blob/4061fac1353e86e502f8c59e179d6d948e329a00/pkgs/by-name/cl/claude-code/update.sh
 
 set -euo pipefail
 
