@@ -6,13 +6,13 @@
 
 buildGoModule rec {
   pname = "git-helpers";
-  version = "0.1.0";
+  version = "0.1.1";
 
   src = fetchFromGitHub {
     owner = "nsfisis";
     repo = "git-helpers";
     rev = "v${version}";
-    hash = "sha256-iK3P91PwKgQz4WIQBJVGjDP65dZSB0LL/NGItMj/wzQ=";
+    hash = "sha256-6aRPjED6yarVobMGAfCNC5pWkNHoz7Il0DUt9Wwja/0=";
   };
   vendorHash = null;
 
