@@ -1,4 +1,4 @@
-# https://github.com/NixOS/nixpkgs/blob/7df7ff7d8e00218376575f0acdcc5d66741351ee/pkgs/by-name/cl/claude-code/package.nix
+# https://github.com/NixOS/nixpkgs/blob/418468ac9527e799809c900eda37cbff999199b6/pkgs/by-name/cl/claude-code/package.nix
 
 {
   lib,
@@ -9,14 +9,14 @@
 }:
 buildNpmPackage (finalAttrs: {
   pname = "claude-code";
-  version = "2.0.55";
+  version = "2.0.58";
 
   src = fetchzip {
     url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${finalAttrs.version}.tgz";
-    hash = "sha256-wsjOkNxuBLMYprjaZQyUZHiqWl8UG7cZ1njkyKZpRYg=";
+    hash = "sha256-6BLpBNqNR2qrKBcXINqvfl2dgaQA6NmxsEsk1ILqeT8=";
   };
 
-  npmDepsHash = "sha256-c8qvF0/FA1TH/OANJ/Hz8CX9+syu9Q7HWW/2adPcnVc=";
+  npmDepsHash = "sha256-XOIuOQUJ0HB86pwuUnrv0B121lO9em9XG1DAK0/L4js=";
 
   postPatch = ''
     cp ${./package-lock.json} package-lock.json
@@ -51,6 +51,7 @@ buildNpmPackage (finalAttrs: {
     downloadPage = "https://www.npmjs.com/package/@anthropic-ai/claude-code";
     license = lib.licenses.unfree;
     maintainers = with lib.maintainers; [
+      adeci
       malo
       markus1189
       omarjatoi
