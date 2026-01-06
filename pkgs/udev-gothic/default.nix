@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/share/fonts
-    cp $src/UDEVGothic35-*.ttf $out/share/fonts
+    cp $src/*.ttf $out/share/fonts
   '';
 
   meta = with lib; {
