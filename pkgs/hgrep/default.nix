@@ -7,22 +7,22 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "hgrep";
-  version = "0.3.8";
+  version = "0.3.9";
 
   src = fetchFromGitHub {
     owner = "rhysd";
     repo = "hgrep";
     rev = "v${version}";
-    hash = "sha256-GcV6tZLhAtBE0/husOqZ3Gib9nXXg7kcxrNp9IK0eTo=";
+    hash = "sha256-xBLpEs0PvYb7sIca9yb3vhi2Bsr1BFqB0jlD+bZT2EI=";
   };
-  cargoHash = "sha256-NxfWY9OoMNASlWE48njuAdTI11JAV+rzjD0OU2cHLsc=";
+  cargoHash = "sha256-TP+PClv7FX3kRBwJ0RAKbKoTKpi7hTZgw/Z/ktFKbwQ=";
 
   nativeBuildInputs = [
     installShellFiles
   ];
 
-  # Disable bat-printer because I won't use it.
-  # https://github.com/rhysd/hgrep/blob/v0.3.8/Cargo.toml#L44-L48
+  # Disable bat-printer because I don't use it.
+  # https://github.com/rhysd/hgrep/blob/v0.3.9/Cargo.toml#L44-L48
   buildNoDefaultFeatures = true;
   buildFeatures = [
     "ripgrep"
