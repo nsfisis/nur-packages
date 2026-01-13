@@ -1,5 +1,9 @@
-# https://github.com/NixOS/nixpkgs/blob/418468ac9527e799809c900eda37cbff999199b6/pkgs/by-name/cl/claude-code/package.nix
+# https://github.com/NixOS/nixpkgs/blob/ffbc9f8cbaacfb331b6017d5a5abb21a492c9a38/pkgs/by-name/cl/claude-code/package.nix
 
+# NOTE: Use the following command to update the package
+# ```sh
+# nix-shell maintainers/scripts/update.nix --argstr commit true --arg predicate '(path: pkg: builtins.elem path [["claude-code"] ["vscode-extensions" "anthropic" "claude-code"]])'
+# ```
 {
   lib,
   buildNpmPackage,
@@ -9,14 +13,14 @@
 }:
 buildNpmPackage (finalAttrs: {
   pname = "claude-code";
-  version = "2.1.2";
+  version = "2.1.6";
 
   src = fetchzip {
     url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${finalAttrs.version}.tgz";
-    hash = "sha256-PpNXyZ3xoZ/4lCvtErltkdsL/1hDRyiicblvhykgROw=";
+    hash = "sha256-M2ZLGnrvNki7B2jOh4Uq2SfSxkICh76uRIFogq+kKZ8=";
   };
 
-  npmDepsHash = "sha256-KdVaAYXCy+oMN9b1lLeIRiGp/Zb29T4b3pvDp8O1v/M=";
+  npmDepsHash = "sha256-Y+4ZcfEJJg4/XYc3vNLw4R5OJz3FlYvgQpkB739jKAQ=";
 
   postPatch = ''
     cp ${./package-lock.json} package-lock.json
@@ -41,7 +45,6 @@ buildNpmPackage (finalAttrs: {
     versionCheckHook
   ];
   versionCheckKeepEnvironment = [ "HOME" ];
-  versionCheckProgramArg = "--version";
 
   passthru.updateScript = ./update.sh;
 
