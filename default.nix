@@ -4,7 +4,6 @@
 {
   claude-code = pkgs.callPackage ./pkgs/claude-code { };
   hgrep = pkgs.callPackage ./pkgs/hgrep { };
-  source-han-code-jp = pkgs.callPackage ./pkgs/source-han-code-jp { };
   udev-gothic = pkgs.callPackage ./pkgs/udev-gothic { };
 
   git-helpers = pkgs.callPackage ./pkgs/git-helpers { };
