@@ -22,7 +22,7 @@ let
   platformManifestEntry = manifest.platforms.${platformKey};
 in
 stdenv.mkDerivation (finalAttrs: {
-  pname = "claude-code-bin";
+  pname = "claude-code";
   inherit (manifest) version;
 
   src = fetchurl {
