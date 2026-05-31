@@ -7,7 +7,7 @@
 
 stdenv.mkDerivation {
   pname = "nvim-setcellwidths-table-for-udev-gothic";
-  version = "1.0.0";
+  version = "1.1.0";
 
   src = ./.;
 
@@ -16,7 +16,7 @@ stdenv.mkDerivation {
   ];
 
   buildPhase = ''
-    python main.py ${udev-gothic}/share/fonts/udev-gothic/UDEVGothic35-Regular.ttf > setcellwidths.lua
+    python main.py ${udev-gothic}/share/fonts/truetype/UDEVGothic35-Regular.ttf > setcellwidths.lua
   '';
 
   installPhase = ''

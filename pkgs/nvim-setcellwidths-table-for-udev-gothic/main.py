@@ -2,6 +2,7 @@ import argparse
 from collections.abc import Generator
 from fontTools.ttLib import TTFont
 from pathlib import Path
+import sys
 import unicodedata
 
 def ambiguous_codepoints() -> Generator[int]:
@@ -125,7 +126,7 @@ def main():
     args = parser.parse_args()
 
     if not Path(args.font).exists():
-        print(f"Font file not found: {args.font}")
+        print(f"Font file not found: {args.font}", file=sys.stderr)
         return 1
 
     stats = analyze_font(args.font)
