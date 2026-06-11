@@ -1,4 +1,4 @@
-# https://github.com/NixOS/nixpkgs/blob/4bf6c8d6f2d10c7924c08c7d51e02d6702484960/pkgs/by-name/cl/claude-code-bin/package.nix
+# https://github.com/NixOS/nixpkgs/blob/331800de5053fcebacf6813adb5db9c9dca22a0c/pkgs/by-name/cl/claude-code/package.nix
 
 {
   lib,
@@ -7,6 +7,7 @@
   installShellFiles,
   makeBinaryWrapper,
   autoPatchelfHook,
+  alsa-lib,
   procps,
   ripgrep,
   bubblewrap,
@@ -51,8 +52,12 @@ stdenv.mkDerivation (finalAttrs: {
 
     wrapProgram $out/bin/claude \
       --set DISABLE_AUTOUPDATER 1 \
+      --set-default FORCE_AUTOUPDATE_PLUGINS 1 \
+      --set DISABLE_INSTALLATION_CHECKS 1 \
       --set USE_BUILTIN_RIPGREP 0 \
-      --prefix PATH : ${
+      ${lib.optionalString stdenv.hostPlatform.isLinux ''
+        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ alsa-lib ]} \
+      ''}--prefix PATH : ${
         lib.makeBinPath (
           [
             # claude-code uses [node-tree-kill](https://github.com/pkrumins/node-tree-kill) which requires procps's pgrep(darwin) or ps(linux)
@@ -95,8 +100,13 @@ stdenv.mkDerivation (finalAttrs: {
       "x86_64-linux"
     ];
     maintainers = with lib.maintainers; [
-      xiaoxiangmoe
+      adeci
+      malo
+      markus1189
       mirkolenz
+      omarjatoi
+      oskarwires
+      xiaoxiangmoe
     ];
     mainProgram = "claude";
   };
