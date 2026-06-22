@@ -4,6 +4,7 @@
 {
   claude-code = pkgs.callPackage ./pkgs/claude-code { };
   hgrep = pkgs.callPackage ./pkgs/hgrep { };
+  mo = pkgs.callPackage ./pkgs/mo { };
 
   git-helpers = pkgs.callPackage ./pkgs/git-helpers { };
   nvim-setcellwidths-table-for-udev-gothic =
