@@ -4,6 +4,7 @@
   buildGoModule,
   fetchFromGitHub,
   fetchPnpmDeps,
+  installShellFiles,
   jq,
   nodejs_22,
   pnpm_10,
@@ -11,13 +12,13 @@
 }:
 
 let
-  version = "1.6.1";
+  version = "1.6.7";
 
   src = fetchFromGitHub {
     owner = "k1LoW";
     repo = "mo";
     rev = "v${version}";
-    hash = "sha256-/PiMYllj0l3XwIkqT/sc7U/vGXdNmTD8RowZWe9ZDR8=";
+    hash = "sha256-8A3km3N9pGm/gBvIxManVgBV5opMZIoNR/JE93gX5yk=";
   };
 
   frontend = stdenvNoCC.mkDerivation (finalAttrs: {
@@ -54,7 +55,7 @@ let
         ;
       pnpm = pnpm_10;
       fetcherVersion = 3;
-      hash = "sha256-473ftja7cEzU/FrMN2xti/ChZ/j2KGhb8Gk+TIa+Pv8=";
+      hash = "sha256-8gW9eJ30ZFcuoZYx+5jYG//Q8lHYDajj8B8Hi5e8wFc=";
     };
 
     buildPhase = ''
@@ -75,7 +76,11 @@ buildGoModule {
   pname = "mo";
   inherit version src;
 
-  vendorHash = "sha256-rmtJswO3DWWxpb2uk91aIatc7ugNmsqzwlEeKdX7ITE=";
+  vendorHash = "sha256-gaw85ILGr3iDWZ8ibRAA7l+UROCaItDBauCVtbZNa0U=";
+
+  nativeBuildInputs = [
+    installShellFiles
+  ];
 
   preBuild = ''
     cp -r ${frontend} internal/static/dist
@@ -86,6 +91,14 @@ buildGoModule {
     "-w"
     "-X github.com/k1LoW/mo/version.Revision=v${version}"
   ];
+
+  postFixup = ''
+    installShellCompletion --cmd mo \
+      --bash <($out/bin/mo completion bash) \
+      --zsh  <($out/bin/mo completion zsh) \
+      --fish <($out/bin/mo completion fish) \
+      ;
+  '';
 
   meta = {
     description = "Markdown viewer that opens .md files in a browser";
