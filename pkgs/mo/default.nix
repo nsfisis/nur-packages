@@ -12,13 +12,13 @@
 }:
 
 let
-  version = "1.6.7";
+  version = "1.6.8";
 
   src = fetchFromGitHub {
     owner = "k1LoW";
     repo = "mo";
     rev = "v${version}";
-    hash = "sha256-8A3km3N9pGm/gBvIxManVgBV5opMZIoNR/JE93gX5yk=";
+    hash = "sha256-aam8kDxZfNXJyGeyj4ZtDRLcZ9mPVKNHnHfVFFkv/Ro=";
   };
 
   frontend = stdenvNoCC.mkDerivation (finalAttrs: {
@@ -55,7 +55,7 @@ let
         ;
       pnpm = pnpm_10;
       fetcherVersion = 3;
-      hash = "sha256-8gW9eJ30ZFcuoZYx+5jYG//Q8lHYDajj8B8Hi5e8wFc=";
+      hash = "sha256-pdpMXqf7ncZTIlubj8PsoEkLefzAVWPEMOwAPvA3Cfs=";
     };
 
     buildPhase = ''
@@ -76,7 +76,7 @@ buildGoModule {
   pname = "mo";
   inherit version src;
 
-  vendorHash = "sha256-gaw85ILGr3iDWZ8ibRAA7l+UROCaItDBauCVtbZNa0U=";
+  vendorHash = "sha256-9LXhQUTsk0+UCtXWMFsE4aGG+2MSOyM+U6dlWw+0G+c=";
 
   nativeBuildInputs = [
     installShellFiles
