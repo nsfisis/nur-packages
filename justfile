@@ -7,12 +7,6 @@ update-claude-code:
     git add pkgs/claude-code
     just commit-upgrade claude-code $(nix eval --json ".#claude-code.version" | jq -r)
 
-update-reparojson:
-    nix run nixpkgs#nix-update -- --flake reparojson
-    nix build ".#reparojson"
-    git add pkgs/reparojson
-    just commit-upgrade reparojson $(nix eval --json ".#reparojson.version" | jq -r)
-
 update-mo:
     nix run nixpkgs#nix-update -- --flake mo
     nix build ".#mo"
