@@ -7,15 +7,15 @@
 
 buildGoModule rec {
   pname = "term-clock";
-  version = "1.1.0";
+  version = "1.1.1";
 
   src = fetchFromGitHub {
     owner = "nsfisis";
     repo = "term-clock";
     rev = "v${version}";
-    hash = "sha256-sRir3m+KpGncOW5ys+eQw4brpYaB9mfVTFg2zrdGrLg=";
+    hash = "sha256-1A6Nb9kCPGiw1hzfHIbzvHnB+1YWUwdlhNilN9u6YxI=";
   };
-  vendorHash = "sha256-NLxaPtxhb67uhs01DASlAIfCIWV1lnuiu+uFmJcxN0U=";
+  vendorHash = "sha256-6c10id1CCJNeicLY+V6DAF9z5i3cs0EK3nUzR0k4ddU=";
 
   nativeBuildInputs = [
     installShellFiles
