@@ -6,9 +6,3 @@ update-claude-code:
     NIXPKGS_ALLOW_UNFREE=1 nix build --impure ".#claude-code"
     git add pkgs/claude-code
     just commit-upgrade claude-code $(nix eval --json ".#claude-code.version" | jq -r)
-
-update-mo:
-    nix run nixpkgs#nix-update -- --flake mo
-    nix build ".#mo"
-    git add pkgs/mo
-    just commit-upgrade mo $(nix eval --json ".#mo.version" | jq -r)
