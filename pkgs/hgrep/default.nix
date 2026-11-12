@@ -3,6 +3,8 @@
   rustPlatform,
   fetchFromGitHub,
   installShellFiles,
+  pkg-config,
+  oniguruma,
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -19,6 +21,11 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [
     installShellFiles
+    pkg-config
+  ];
+
+  buildInputs = [
+    oniguruma
   ];
 
   # Disable bat-printer because I don't use it.
